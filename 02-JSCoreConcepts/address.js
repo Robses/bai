@@ -1,3 +1,4 @@
+
 title = "dr";
 name = "Mateusz";
 surname = 'Kubicki';
@@ -7,9 +8,4 @@ zip = '30-781';
 country = 'Poland';
 
 
-/* 
-dr Mateusz Kubicki
-ul. Długa 15
-30-781 Kraków
-POLAND
-*/
+
