@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Pink Floyd</title>
+		<meta charset="UTF-8">
+	</head>
+	<body id="body" ondblclick="changeToYellow(this)">
+		<h1 id="title" onclick="part2(this)">Another Brick in the Wall</h1>
+		<h3 id="bandName"onclick="showDescription(this)">Pink Floyd</h3>
+		<p id="lyrics" onclick="changeToItalic(this)" oncopy="copyAlert()">We don't need no education<br>
+		We don't need no thought control<br>
+		No dark sarcasm in the classroom<br>
+		Teachers leave them kids alone<br>
+		Hey! Teachers! Leave them kids alone<br>
+		All in all it's just another brick in the wall<br>
+		All in all you're just another brick in the wall</p>
+		
+		<p id="description"  style="visibility: hidden;" onclick="displayIMG()" >Pink Floyd were an English rock band formed in London.<br>
+		They achieved international acclaim with their progressive<br>
+		and psychedelic music.</p>
+		<div id="bandImage"></div>
+		
+		<script>
+			
+
+			function part2(){
+				document.getElementById("title").innerHTML = "Another Brick in the Wall (Part2)";
+			}
+			function showDescription(){
+				document.getElementById("description").style.visibility = "visible";
+			}
+			function changeToItalic(){
+				document.getElementById("lyrics").style.fontStyle = "italic";
+			}
+			function changeToYellow(){
+				document.getElementById("body").style.backgroundColor = "yellow";
+			}
+			function copyAlert() {
+				alert("© 1979 Pink Floyd\nAll Rights Reserved.")
+			}
+			function displayIMG() {
+				let imageTag = document.createElement("img");
+				imageTag.setAttribute("src", "https://upload.wikimedia.org/wikipedia/en/d/d6/Pink_Floyd_-_all_members.jpg")
+				let imageDiv = document.getElementById("bandImage");
+				imageDiv.appendChild(imageTag);
+			}
+
+
+		</script>
+	</body>
+</html>
