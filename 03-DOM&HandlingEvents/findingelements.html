@@ -2,6 +2,7 @@
 
 <head>
     <title>Finding elements</title>
+    <meta charset="UTF-8">
 </head>
 
 <body>
@@ -15,10 +16,10 @@
         console.log(document.getElementById("someTest").textContent);
         console.log(document.getElementsByClassName("important")[0].textContent);
         
-        let paragraphs = document.getElementsByTagName("p").textContent
-      
-        for (let i = 0; i < 5; i++) {
-            console.log(paragraphs[i].textContent);
+        let paragraphTag = document.getElementsByTagName("p");
+
+        for ( i = 0; i < paragraphTag.length; i++) {
+            console.log(paragraphTag[i].innerHTML);
         }
     </script>
 </body>
