@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style type="text/css">
+        table {
+            border-collapse: collapse;
+            table-layout: fixed;
+            width: 50%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        td, th {
+            text-align: left;
+            padding: 5px;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <table>
+            <tr>
+                <th>Currency</th>
+                <th>Code</th>
+                <th>Mid</th>
+            </tr>
+            <tr v-for="item in money">
+                <td>{{item.currency}}</td>
+                <td>{{item.code}}</td>
+                <td>{{item.mid}}</td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                money: []
+            }
+        });
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = parseData;
+        xhr.open('GET', `https://api.nbp.pl/api/exchangerates/tables/A/`);
+        xhr.send();
+        function parseData() {
+            if (this.readyState == 4 && this.status == 200) {
+                const parsed = JSON.parse(xhr.responseText)
+                let rates = parsed[0].rates
+                for (let i = 0; i < rates.length; i++) {
+                    Vue.set(app.money, i, rates[i])
+                }
+            }
+        };
+        console.log(app.money)
+    </script>
+</body>
+
+</html>

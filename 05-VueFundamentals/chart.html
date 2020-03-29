@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <title>Popularity of programming languages</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 </head>
+
 <body>
+  <canvas></canvas>
   <script>
     var app = new Vue({
       el: '#app',
@@ -29,9 +34,80 @@
             language: 'Php',
             popularity: 7.37
           }
-        ] 
+        ]
+      },
+      computed: {
+        getLanguage: function () {
+          var lang = []
+          for (var i = 0; i < this.films.length; i++) {
+            lang[i] = this.films[i].language
+          }
+          return lang
+        },
+
+        getPopularity: function () {
+          var pop = []
+          for (var i = 0; i < this.films.length; i++) {
+            pop[i] = this.films[i].popularity
+          }
+          return pop
+        }
       }
     });
+    var canvas = document.getElementsByTagName('canvas')[0]
+    var myChart = new Chart(canvas, {
+      type: 'bar',
+      data: {
+        labels: app.getLanguage,
+        datasets: [{
+          label: 'Language Popularity',
+          data: app.getPopularity,
+          backgroundColor: [
+            "rgba(255, 99, 132, 1)",
+            'rgba(255, 159, 64, 1)',
+            "rgba(255, 205, 86, 1)",
+            "rgba(75, 192, 192, 1)",
+            "rgba(54, 162, 235, 1)",
+          ],
+
+        }],
+      },
+      options: {
+        responsive: true,
+        title: {
+          display: true,
+          text: 'Popularity of programming languages'
+        },
+        tooltips: {
+          mode: 'index',
+          intersect: false,
+        },
+        hover: {
+          mode: 'nearest',
+          intersect: true
+        },
+        scales: {
+          xAxes: [{
+            display: true,
+            scaleLabel: {
+              display: true,
+              labelString: 'Language'
+            }
+          }],
+          yAxes: [{
+            display: true,
+            scaleLabel: {
+              display: true,
+              labelString: 'Popularity'
+            }
+          }]
+        }
+      }
+    });
+
+    document.body.appendChild(canvas)
+
   </script>
 </body>
+
 </html>
